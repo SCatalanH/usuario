@@ -1,0 +1,9 @@
+com\alertasmedicas\usuarios\utils\ResourceUtils.class
+com\alertasmedicas\usuarios\handler\UsuarioHandler$Request.class
+com\alertasmedicas\usuarios\UsuariosApp.class
+com\alertasmedicas\usuarios\UsuarioController.class
+com\alertasmedicas\usuarios\App.class
+com\alertasmedicas\usuarios\handler\UsuarioHandler.class
+com\alertasmedicas\usuarios\dao\UsuarioDAO.class
+com\alertasmedicas\usuarios\model\Usuario.class
+com\alertasmedicas\usuarios\handler\UsuarioHandler$Response.class

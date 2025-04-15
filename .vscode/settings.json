@@ -1,0 +1,6 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "appService.defaultWebAppToDeploy": "/subscriptions/bb1ccac7-d7f8-47bf-82c2-f223185cfab9/resourceGroups/DSY2207_001A_DCNATIVE2_GRUPO02/providers/Microsoft.Web/sites/usuarios-app-rest",
+    "appService.deploySubpath": "target\\usuarios-1.0-SNAPSHOT.jar"
+}
