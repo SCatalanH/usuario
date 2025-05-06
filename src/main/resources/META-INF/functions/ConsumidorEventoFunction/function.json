@@ -1,0 +1,12 @@
+{
+    "bindings": [
+      {
+        "type": "eventGridTrigger",
+        "name": "evento",
+        "direction": "in"
+      }
+    ],
+    "scriptFile": "../../../../../../target/usuarios-1.0-SNAPSHOT.jar",
+    "entryPoint": "com.alertasmedicas.eventos.ConsumidorEventoFunction.run"
+  }
+  

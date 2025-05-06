@@ -1,3 +1,4 @@
+com\alertasmedicas\usuarios\eventgrid\EventGridPublisher.class
 com\alertasmedicas\usuarios\utils\ResourceUtils.class
 com\alertasmedicas\usuarios\handler\UsuarioHandler$Request.class
 com\alertasmedicas\usuarios\UsuariosApp.class
@@ -7,3 +8,4 @@ com\alertasmedicas\usuarios\handler\UsuarioHandler.class
 com\alertasmedicas\usuarios\dao\UsuarioDAO.class
 com\alertasmedicas\usuarios\model\Usuario.class
 com\alertasmedicas\usuarios\handler\UsuarioHandler$Response.class
+com\alertasmedicas\eventos\ConsumidorEventoFunction.class
