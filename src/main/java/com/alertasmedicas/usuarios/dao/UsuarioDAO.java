@@ -58,30 +58,42 @@ public class UsuarioDAO {
     }
 
     public static Usuario crearUsuario(Usuario u) {
-        String sql = "INSERT INTO USUARIO (ID_USUARIO, USERNAME, PASS, NOMBRE, APELLIDO) VALUES (?, ?, ?, ?, ?)";
+        String sqlUsuario = "INSERT INTO USUARIO (ID_USUARIO, USERNAME, PASS, NOMBRE, APELLIDO) VALUES (?, ?, ?, ?, ?)";
+        String sqlUsuarioRol = "INSERT INTO USUARIO_ROL (ID_USUARIO_ROL, USUARIO_ID_USUARIO, ROL_ID_ROL, ESTADO) VALUES (?, ?, ?, ?)";
+    
         try (Connection conn = getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setString(1, u.getIdUsuario());
-            ps.setString(2, u.getUsername());
-            ps.setString(3, u.getPass());
-            ps.setString(4, u.getNombre());
-            ps.setString(5, u.getApellido());
-
-            int result = ps.executeUpdate();
-            System.out.println("✅ Filas insertadas: " + result);
-
-            EventGridPublisher.publicarEvento("REST", "success", "POST", "Usuario creado: " + u.getIdUsuario());
+             PreparedStatement psUsuario = conn.prepareStatement(sqlUsuario);
+             PreparedStatement psRol = conn.prepareStatement(sqlUsuarioRol)) {
+    
+            // Insertar en USUARIO
+            psUsuario.setString(1, u.getIdUsuario());
+            psUsuario.setString(2, u.getUsername());
+            psUsuario.setString(3, u.getPass());
+            psUsuario.setString(4, u.getNombre());
+            psUsuario.setString(5, u.getApellido());
+            psUsuario.executeUpdate();
+    
+            // Insertar en USUARIO_ROL
+            String idUsuarioRol = String.valueOf(System.currentTimeMillis()); // puedes usar un contador simple o secuencia
+            psRol.setString(1, idUsuarioRol);
+            psRol.setString(2, u.getIdUsuario());
+            psRol.setInt(3, 2); // ROL fijo = 2
+            psRol.setString(4, "A"); // Estado activo
+            psRol.executeUpdate();
+    
+            System.out.println("✅ Usuario creado y rol asignado correctamente.");
+            EventGridPublisher.publicarEvento("REST", "success", "POST", "Usuario creado y rol asignado: " + u.getIdUsuario());
             return u;
-
+    
         } catch (SQLException e) {
-            System.out.println("❌ Error al insertar usuario:");
+            System.out.println("❌ Error al crear usuario o asignar rol:");
             e.printStackTrace();
             EventGridPublisher.publicarEvento("REST", "error", "POST", "Error al crear usuario: " + e.getMessage());
             return null;
         }
     }
-
+    
+    
     public static Usuario obtenerUsuario(String id) {
         String sql = "SELECT * FROM USUARIO WHERE ID_USUARIO = ?";
         try (Connection conn = getConnection();
